@@ -1,0 +1,56 @@
+.section.adp-collection-header-left-container {
+    padding-right: 0;
+}
+
+.adp-collection-header {
+    display: flex;
+    height: 124px;
+}
+
+.adp-collection-header-left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    font-size: var(--header-font-size);
+    padding: 0;
+    top: 0.01rem;
+    padding-top: 0.88rem;
+    padding-bottom: 0.88rem;
+    z-index: 1;
+}
+
+.adp-collection-header-left .adp-collection-title {
+    margin-bottom: 12px;
+}
+
+.adp-collection-stats {
+    border: #E6E6E6 1px solid;
+    border-radius: 6px;
+    font: 11px/14px var(--body-font-family);
+    padding: 6px 10px;
+    width: fit-content;
+}
+
+.adp-collection-header-left .back-button .icon {
+    height: 10px;
+    width: 18px;
+    vertical-align: text-bottom;
+}
+
+.adp-collection-header .adp-collection-title {
+    font: var(--collection-heading-font);
+    width: 100%;
+}
+
+.adp-collection-header .actions .adp-action {
+    text-wrap: nowrap;
+    align-items: center;
+}
+
+.adp-collection-header .actions {
+    /* vertically align center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

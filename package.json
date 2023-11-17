@@ -1,40 +1,137 @@
 {
-  "name": "@adobe/aem-boilerplate",
+  "name": "@adobe/helix-project-boilerplate",
   "private": true,
-  "version": "1.2.2",
+  "version": "1.0.0",
   "description": "Starter project for Adobe Helix",
   "scripts": {
+    "update-dependencies": "rm -r scripts/libs/* || true && webpack --mode production && node build/buildDependencies.js",
+    "test": "wtr \"./test/**/*.test.js\" --node-resolve --port=2000 --coverage",
+    "test:watch": "npm test -- --watch",
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
-    "lint": "npm run lint:js && npm run lint:css",
-    "semantic-release": "semantic-release --debug"
+    "lint": "npm run lint:js && npm run lint:css"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adobe/aem-boilerplate.git"
+    "url": "git+https://github.com/adobe/helix-project-boilerplate.git"
   },
   "author": "Adobe",
   "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/adobe/aem-boilerplate/issues"
+    "url": "https://github.com/adobe/helix-project-boilerplate/issues"
   },
-  "homepage": "https://github.com/adobe/aem-boilerplate#readme",
+  "homepage": "https://github.com/adobe/helix-project-boilerplate#readme",
   "devDependencies": {
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/exec": "6.0.3",
-    "@semantic-release/git": "10.0.1",
-    "semantic-release": "21.0.5",
     "@babel/core": "7.21.0",
-    "@babel/eslint-parser": "7.19.1",
-    "chai": "4.3.7",
-    "eslint": "8.35.0",
-    "eslint-config-airbnb-base": "15.0.0",
-    "eslint-plugin-import": "2.27.5",
+    "@babel/eslint-parser": "^7.19.1",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@web/test-runner": "0.15.1",
     "@web/test-runner-commands": "0.6.5",
+    "chai": "4.3.7",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "8.35.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "fs": "^0.0.1-security",
     "sinon": "15.0.1",
     "stylelint": "15.2.0",
-    "stylelint-config-standard": "30.0.1"
-  }
+    "stylelint-config-prettier": "9.0.4",
+    "stylelint-config-standard": "30.0.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.11.1",
+    "@algolia/autocomplete-plugin-query-suggestions": "1.11.1",
+    "@algolia/autocomplete-plugin-recent-searches": "^1.11.1",
+    "@algolia/autocomplete-theme-classic": "^1.11.1",
+    "algoliasearch": "^4.18.0",
+    "flatpickr": "^4.6.13",
+    "instantsearch.css": "^8.1.0",
+    "instantsearch.js": "^4.56.3"
+  },
+  "copyDependencies": [
+    {
+      "from": "node_modules/algoliasearch/dist/",
+      "to": "scripts/libs/algoliasearch/",
+      "fileIncludes": {
+        "file": "algoliasearch-lite.umd.js",
+        "attributes": ["async"],
+        "category": "search"
+      }
+    },
+    {
+      "from": "node_modules/instantsearch.js/dist/",
+      "to": "scripts/libs/instantsearch.js/",
+      "fileIncludes": {
+        "file": "instantsearch.production.min.js",
+        "attributes": ["async"],
+        "category": "search"
+      }
+    },
+    {
+      "from": "node_modules/instantsearch.css/themes/",
+      "to": "scripts/libs/instantsearch.css/themes/",
+      "fileIncludes": "satellite.css"
+    },
+    {
+      "from": "node_modules/@algolia/autocomplete-js/dist/umd/",
+      "to": "scripts/libs/algolia/autocomplete-js/",
+      "fileIncludes": {
+        "file": "index.production.js",
+        "attributes": ["async"],
+        "category": "search-autocomplete"
+      }
+    },
+    {
+      "from": "node_modules/@algolia/autocomplete-plugin-recent-searches/dist/umd/",
+      "to": "scripts/libs/algolia/autocomplete-plugin-recent-searches/",
+      "fileIncludes": {
+        "file": "index.production.js",
+        "attributes": ["async"],
+        "category": "search-autocomplete"
+      }
+    },
+    {
+      "from": "node_modules/@algolia/autocomplete-plugin-query-suggestions/dist/umd/",
+      "to": "scripts/libs/algolia/autocomplete-plugin-query-suggestions/",
+      "fileIncludes": {
+        "file": "index.production.js",
+        "attributes": ["async"],
+        "category": "search-autocomplete"
+      }
+    },
+    {
+      "from": "node_modules/@algolia/autocomplete-theme-classic/dist/",
+      "to": "scripts/libs/algolia/autocomplete-theme-classic/",
+      "fileIncludes": "theme.min.css"
+    },
+    {
+      "from": "node_modules/flatpickr/dist/",
+      "to": "scripts/libs/flatpickr/",
+      "globOptions": {
+        "ignore": [
+          "**/esm/**/*",
+          "**/plugins/**/*",
+          "**/l10n/**/*.ts"
+        ]
+      },
+      "fileIncludes": [
+        {
+          "file": "flatpickr.min.js",
+          "attributes": ["async"],
+          "category": "flatpickr"
+        },
+        {
+          "file": "flatpickr.min.css"
+        }
+      ]
+    }
+  ],
+  "externalDependencies": [
+    {
+      "url": "https://sdk-1p.cc-embed.adobe.com/v3/CCEverywhere.js",
+      "attributes": ["async"],
+      "category": "CCEverywhere"
+    }
+  ]
 }
