@@ -120,6 +120,7 @@ export async function openAssetDetailsPanel(assetId, resultsManagerObj) {
   if (assetDetailsPanel.parentElement.scrollTop > 0) {
     assetDetailsPanel.parentElement.scrollTop = 0;
   }
+
   emitEvent(document.documentElement, EventNames.ASSET_QUICK_PREVIEW, {
     assetId,
     assetName: fileName,

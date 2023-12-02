@@ -297,7 +297,6 @@ The following are valid event names, along with the `detail` data for each:
   * `shares`: An array of information about each shared item. Each item in the array will have these properties:
     * `assetId`: ID of the asset that was shared.
     * `assetName`: Name of the asset that was shared.
-
 ```
 {
   ...
@@ -311,7 +310,87 @@ The following are valid event names, along with the `detail` data for each:
     }]
   }
 }
+
 ```
+* `create-collection`: Sent when assets are added to new collection.    
+   * `collectionName` : Collection name
+   * `collectionId` : Collection Id
+   * `assets` : Array of the collections assets. Each item in the array will contain the following:
+        * `assetId`: ID of the asset that was shared.
+        * `assetName`: Name of the asset that was shared.
+```
+{
+  ...
+  detail: {
+    collectionName: 'Name of Collection',
+    collectionId: 'id-of-collection',
+    assets:[{
+      assetId: 'id-of-an-asset',
+      assetName: 'My test asset.jpg',
+    }, {
+      assetId: 'id-of-another-asset',
+      assetName: 'My other asset.jpg',
+    }]
+  }
+}
+
+```
+* `add-to-collection`: Sent when assets are added to an existing collection.    
+   * `collectionName` : Collection name
+   * `collectionId` : Collection Id
+   * `assets` : Array of the assets that were added to the collection. Each item in the array will contain the following:
+        * `assetId`: ID of the asset that was shared.
+        * `assetName`: Name of the asset that was shared.
+```
+{
+  ...
+  detail: {
+    collectionName: 'Name of Collection',
+    collectionId: 'id-of-collection',
+    assets:[{
+      assetId: 'id-of-an-asset',
+      assetName: 'My test asset.jpg',
+    }, {
+      assetId: 'id-of-another-asset',
+      assetName: 'My other asset.jpg',
+    }]
+  }
+}
+```
+
+* `delete-from-collection`: Sent when assets are deleted from an existing collection.    
+   * `collectionName` : Collection name
+   * `collectionId` : Collection Id
+   * `assets` : Array of the assets that were deleted from the collection. Each item in the array will contain the following:
+        * `assetId`: ID of the asset that was shared.
+        * `assetName`: Name of the asset that was shared.
+```
+{
+  ...
+  detail: {
+    collectionName: 'Name of Collection',
+    collectionId: 'id-of-collection',
+    assets:[{
+      assetId: 'id-of-an-asset',
+      assetName: 'My test asset.jpg',
+    }, {
+      assetId: 'id-of-another-asset',
+      assetName: 'My other asset.jpg',
+    }]
+  }
+}
+```
+
+* `delete-collection`: Sent when a collection is deleted.    
+   * `collectionName` : Collection name
+   * `collectionId` : Collection Id
+```
+{
+  collectionName:'collection name',
+  collectionId:'collection Id',
+}
+```
+
 
 * `page-view`: A page has loaded on the site. This will be triggered by any action that loads a portal URL, including but not limited to: users typing one of the site's URLs into the browser address bar,
  users clicking links, users navigating to browser favorites, redirects to the site, etc. The event will be fired for _any_ page on the portal, including pages from individual implementations.
@@ -322,6 +401,42 @@ The following are valid event names, along with the `detail` data for each:
   ...
   detail: {
     url: 'https://main--adobe-gmo--hlxsites.hlx.page/#assetId=urn%3Aaaid%3Aaem%3Affe954d3-2a18-4c09-90ff-78e2973da522'
+  }
+  ...
+}
+```
+
+* `select-all-items`: Sent whenever a user selects all asset items via the "Select All" checkbox. Only the loaded asset items (non-placeholders) contained in the infinite results container are selected.
+  * `selection`: An array containing information of each item selected. Each item in the array will have the property:
+    * `assetId`: ID of the asset that was selected.
+
+```
+{
+  ...
+  detail: {
+    selections: {
+      selectedItems: [
+        assetId: 'id-of-an-asset'
+      ]
+    }
+  }
+  ...
+}
+```
+
+* `deselect-all-items`: Sent whenever a user deselects all asset items via the "Select All" checkbox.
+  * `selection`: An array containing information of each item still selected. Each item in the array will have the property:
+    * `assetId`: ID of the asset that was selected.
+
+```
+{
+  ...
+  detail: {
+    selections: {
+      selectedItems: [
+        assetId: 'id-of-an-asset'
+      ]
+    }
   }
   ...
 }
