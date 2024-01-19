@@ -6,20 +6,20 @@ import { logError } from '../../scripts/scripts.js';
 
 const GENERAL_METRICS = [{
   category: 'Total assets',
-  amount: 3026,
+  amount: 299,
 }, {
   category: 'Total size',
-  amount: 1024 * 1024 * 1024 * 203,
+  amount: 1024 * 1024 * 1024 * 100,
   unit: 'bytes',
 }, {
   category: 'Uploads year-to-date',
-  amount: 3614,
+  amount: 225,
 }, {
   category: 'Uploads quarter-to-date',
-  amount: 188,
+  amount: 225,
 }, {
   category: 'Uploads last 30 days',
-  amount: 47,
+  amount: 250,
 }];
 
 function formatNumber(number) {
